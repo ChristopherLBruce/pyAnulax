@@ -1,8 +1,3 @@
-"""PyQt widget for simple 2-button GUI that replicates the anulax detonator from
-Guardians of the Galaxy 2
-
-"""
-
 import sys
 import os
 import random
@@ -18,29 +13,33 @@ from PyQt5.QtCore import QSize, QTime, Qt
 from PyQt5.QtMultimedia import QSound
 
 
+
 class Main_Window( QWidget ):
 	"""
-	Enter a description of the class here.
+	PyQt widget for simple 2-button GUI that replicates the anulax detonator from
+	Guardians of the Galaxy 2
 
 	**Arguments:**
 
-		:``Argument``:	`arg_type` Enter a description for the argument here.
+		None
 
 	**Keyword Arguments:**
 
-		:``Argument``:	`arg_type` Enter a description for the keyword argument here.
+		None
 
 	**Examples:** ::
 
-		Enter code examples here. (optional field)
+		import sys
+		from PyQt5.QtWidgets import QApplication
+		from PyAnulax import gui
 
-	**Todo:**
-
-		Enter thing to do. (optional field)
-
+		if __name__ == '__main__':
+			app		= QApplication( sys.argv )
+			window	= gui.create( )
+			
 	**Author:**
 
-		Chris Bruce, chris.bruce@dsvolition.com, 3/14/2018
+		Chris Bruce, christopherlbruce@gmail.com, 3/14/2018
 	"""
 
 	TITLE					= 'Anulax Detonator'
@@ -73,7 +72,7 @@ class Main_Window( QWidget ):
 	MORPH_BUTTON_POS	= [ 320 , 400 ]
 
 
-	STYLE_SHEET			= '''
+	STYLE_SHEET = '''
 	QLCDNumber	{ background-color: rgb( 0, 0, 0, 255 ); color: rgb( 192, 24, 16 ); }
 	QPushButton	{ background-color: rgb( 255, 0, 0, 0 ); border-style: outset; border-width: 1px; border-radius: 43px; }
    QPushButton:hover{ background-color: rgb( 255, 0, 0, 16 ); border-style: outset; border-width: 2px; border-radius: 43px; }
@@ -85,7 +84,7 @@ class Main_Window( QWidget ):
 
 		**Author:**
 
-			Chris Bruce, chris.bruce@dsvolition.com, 12/7/2017
+			Chris Bruce, christopherlbruce@gmail.com, 12/7/2017
 		"""
 
 		super( Main_Window, self ).__init__()
@@ -104,7 +103,7 @@ class Main_Window( QWidget ):
 
 		**Author:**
 
-			Chris Bruce, chris.bruce@dsvolition.com, 12/7/2017
+			Chris Bruce, christopherlbruce@gmail.com, 12/7/2017
 		"""
 
 		self.setWindowTitle( '{} - v{}'.format( self.TITLE, self.VERSION ) )
@@ -135,11 +134,11 @@ class Main_Window( QWidget ):
 
 		**Returns:**
 
-			:``[type]``: [description]
+			:``tuple``: QLabel, QPushButton
 
 		**Author:**
 
-			Chris Bruce, chris.bruce@dsvolition.com, 11/19/2018
+			Chris Bruce, christopherlbruce@gmail.com, 11/19/2018
 		"""
 
 		widget = QLabel( self )
@@ -175,11 +174,11 @@ class Main_Window( QWidget ):
 
 		**Returns:**
 
-			:``[type]``: [description]
+			:``QLCDNumber``: QLCDNumber widget
 
 		**Author:**
 
-			Chris Bruce, chris.bruce@dsvolition.com, 11/19/2018
+			Chris Bruce, christopherlbruce@gmail.com, 11/19/2018
 		"""
 
 		self.minutes		= random.randint( 5, 9 )
@@ -222,11 +221,11 @@ class Main_Window( QWidget ):
 
 		**Returns:**
 
-			:``[type]``: [description]
+			:``QPushButton``: QPushButton widget
 
 		**Author:**
 
-			Chris Bruce, chris.bruce@dsvolition.com, 11/19/2018
+			Chris Bruce, christopherlbruce@gmail.com, 11/19/2018
 		"""
 
 		button	= QPushButton( self )
@@ -253,11 +252,11 @@ class Main_Window( QWidget ):
 
 		**Returns:**
 
-			:``QGroupBox``: QGroupBox widget
+			:``QPushButton``: QPushButton widget
 
 		**Author:**
 
-			Chris Bruce, chris.bruce@dsvolition.com, 11/2/2018
+			Chris Bruce, christopherlbruce@gmail.com, 11/2/2018
 		"""
 
 		button	= QPushButton( self )
@@ -271,13 +270,29 @@ class Main_Window( QWidget ):
 
 
 	def start_countdown( self ):
+		"""
+		Starts the countdown thread
+		
+		**Arguments:**
+		
+			None
+		
+		**Keword Arguments:**
+		
+			None
+		
+		**Author:**
+		
+			Chris Bruce, chris.bruce@dsvolition.com, 9/13/2019
+		"""
+
 		self.timer_thread = Thread( target = self._countdown )
 		self.timer_thread.start( )
 
 
 	def _countdown( self ):
 		"""
-		threaded function that handles couting down the timer
+		Threaded function that handles couting down the timer
 
 		**Arguments:**
 
@@ -289,11 +304,11 @@ class Main_Window( QWidget ):
 
 		**Returns:**
 
-			:``[type]``: [description]
+			:``result``: Result of self._destroyWindow( )
 
 		**Author:**
 
-			Chris Bruce, chris.bruce@dsvolition.com, 11/19/2018
+			Chris Bruce, christopherlbruce@gmail.com, 11/19/2018
 		"""
 
 		max_sec = QTime( 0, 0 ).secsTo( self.time )
@@ -327,7 +342,7 @@ class Main_Window( QWidget ):
 
 		**Author:**
 
-			Chris Bruce, chris.bruce@dsvolition.com, 11/19/2018
+			Chris Bruce, christopherlbruce@gmail.com, 11/19/2018
 		"""
 
 		self.destroy( )
@@ -339,7 +354,7 @@ class Main_Window( QWidget ):
 
 		**Author:**
 
-			Chris Bruce, chris.bruce@dsvolition.com, 11/2/2018
+			Chris Bruce, christopherlbruce@gmail.com, 11/2/2018
 		"""
 
 		print( 'Button 1 was pressed!' )
@@ -353,7 +368,7 @@ class Main_Window( QWidget ):
 
 		**Author:**
 
-			Chris Bruce, chris.bruce@dsvolition.com, 11/2/2018
+			Chris Bruce, christopherlbruce@gmail.com, 11/2/2018
 		"""
 
 		print( 'Button 2 was pressed!' )
@@ -367,7 +382,7 @@ class Main_Window( QWidget ):
 
 		**Author:**
 
-			Chris Bruce, chris.bruce@dsvolition.com, 12/7/2017
+			Chris Bruce, christopherlbruce@gmail.com, 12/7/2017
 		"""
 
 		pass
@@ -379,7 +394,7 @@ class Main_Window( QWidget ):
 
 		**Author:**
 
-			Chris Bruce, chris.bruce@dsvolition.com, 12/7/2017
+			Chris Bruce, christopherlbruce@gmail.com, 12/7/2017
 		"""
 
 		return True
@@ -387,7 +402,7 @@ class Main_Window( QWidget ):
 
 	def mousePressEvent( self, event ):
 		"""
-		Overrides mousPressEvent to enable moving the widget around
+		Overrides mousePressEvent to enable moving the widget around
 
 		**Arguments:**
 
@@ -395,7 +410,7 @@ class Main_Window( QWidget ):
 
 		**Author:**
 
-			Chris Bruce, chris.bruce@dsvolition.com, 11/19/2018
+			Chris Bruce, christopherlbruce@gmail.com, 11/19/2018
 		"""
 
 		# In the first method, you would do something like this, checking that the right
@@ -415,7 +430,7 @@ class Main_Window( QWidget ):
 
 		**Author:**
 
-			Chris Bruce, chris.bruce@dsvolition.com, 11/19/2018
+			Chris Bruce, christopherlbruce@gmail.com, 11/19/2018
 		"""
 
 		if event.buttons( ) == Qt.LeftButton:
@@ -430,7 +445,7 @@ class Main_Window( QWidget ):
 
 		**Author:**
 
-			Chris Bruce, chris.bruce@dsvolition.com, 12/7/2017
+			Chris Bruce, christopherlbruce@gmail.com, 12/7/2017
 		"""
 
 		pass
@@ -443,13 +458,14 @@ def create( ):
 
 	**Author:**
 
-		Chris Bruce, chris.bruce@dsvolition.com, 12/9/2017
+		Chris Bruce, christopherlbruce@gmail.com, 12/9/2017
 	"""
 
 	window = Main_Window( )
 	window.show( )
 
 	return window
+
 
 
 if __name__ == 'main':
